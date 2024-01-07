@@ -33,7 +33,7 @@ Inside the activities folder you will have all your GPX routes
 
 This is the folder that GPXAnalyzer will processs.
 
-## 2024-07-01
+### 2024-07-01
 
 The APP currently just provides a button for you to select a folder with the GPX files.
 It reads all the GPX files and dumps a sorted list, tab delimited, with the following sample information
