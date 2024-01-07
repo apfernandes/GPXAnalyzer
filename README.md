@@ -33,6 +33,8 @@ Inside the activities folder you will have all your GPX routes
 
 This is the folder that GPXAnalyzer will processs.
 
+## 2024-07-01
+
 The APP currently just provides a button for you to select a folder with the GPX files.
 It reads all the GPX files and dumps a sorted list, tab delimited, with the following sample information
 
@@ -46,11 +48,9 @@ running	      | 2018-08-15 | 2018 | 227	            | 10.726411593846963 km |	41
 running	      | 2018-11-03 | 2018 | 307	            | 14.751070878509887 km |	6928.0	s
 ```
 
+You can then copy the xcode console data and in Excel use paste special, text and the data will be available
+for some charting
+
 ![xcode console](imageAssets/xcode_console.png)
-
-
-
-
-
 
 
