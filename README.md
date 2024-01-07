@@ -46,7 +46,7 @@ running	      | 2018-08-15 | 2018 | 227	            | 10.726411593846963 km |	41
 running	      | 2018-11-03 | 2018 | 307	            | 14.751070878509887 km |	6928.0	s
 ```
 
-
+![xcode console](imageAssets/xcode_console.png)
 
 
 
