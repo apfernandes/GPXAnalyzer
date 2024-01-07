@@ -53,4 +53,11 @@ for some charting
 
 ![xcode console](imageAssets/xcode_console.png)
 
+With some quick copy and paste I was able to look at my accumulated running distance comparisons.
+After a slow 2021, I "woke up" late in 2023 to try and beat 2021. I did not have all the data
+exported from Strava so 2023 is incomplete (spoiler, I did beat 2021 ;) )
+
+![analyses](imageAssets/analysis.png)
+Excel chart using the output of GPXAnalyzer
+
 
