@@ -17,7 +17,8 @@ class GPX: NSObject, XMLParserDelegate {
     var activityType: String? // You need to define how to extract this from your GPX
     var totalTime: TimeInterval?
     var totalDistance: Double?
-    
+    var accumulatedDistance: Double?
+
     private var trackPoints: [CLLocation] = []
     private var trackPointTimestamps: [Date] = []
     private var currentElement = ""
@@ -49,8 +50,10 @@ class GPX: NSObject, XMLParserDelegate {
         
         parser?.delegate = self
         parser?.parse()
+        
+        accumulatedDistance = 0
         calculateTotalDistanceAndTime()
-        printSummary()
+        updateSummary()
     }
     
     //-////////////////////////////////////////////////////////////////////////
@@ -129,7 +132,7 @@ class GPX: NSObject, XMLParserDelegate {
     //
     // _printSummary_
     //
-    func printSummary() {
+    func updateSummary() {
         
         let yearStr = year.map(String.init) ?? "N/A"
         let monthStr = month! < 10 ? String(format: "0%d", month!) : String(month!)
@@ -138,12 +141,13 @@ class GPX: NSObject, XMLParserDelegate {
         
         let dayOfYearStr = dayNumberOfYear.map(String.init) ?? "N/A"
         let activityTypeStr = activityType ?? "N/A"
-        let totalTimeStr = totalTime.map { "\($0)\ts" } ?? "N/A"
-        let totalDistanceStr = totalDistance.map { "\($0)\tkm" } ?? "N/A"
+        let totalTimeStr = totalTime.map { "\($0)" } ?? "N/A"
+        let totalDistanceStr = totalDistance.map { "\($0)" } ?? "N/A"
+        let accumulatedDistanceStr = accumulatedDistance.map { "\($0)" } ?? "N/A"
         
         sortField = "\(activityTypeStr)\t\(yearStr)-\(monthStr)-\(dayStr)"
 
-        summaryString = "\(activityTypeStr)\t\(yearStr)-\(monthStr)-\(dayStr)\t\(year!)\t\(dayOfYearStr)\t\(totalDistanceStr)\t\(totalTimeStr)"
+        summaryString = "\(activityTypeStr)\t\(yearStr)-\(monthStr)-\(dayStr)\t\(year!)\t\(dayOfYearStr)\t\(accumulatedDistanceStr)\t\(totalDistanceStr)\t\(totalTimeStr)"
         
         //print(summaryString!)
     }

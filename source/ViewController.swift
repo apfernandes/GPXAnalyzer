@@ -8,11 +8,11 @@
 import UIKit
 import UniformTypeIdentifiers
 
-class ViewController: UIViewController, UIDocumentPickerDelegate {
-
+class ViewController: UIViewController, UIDocumentPickerDelegate, GPXCollectionDelegate {
+    
     var progressBar : UIProgressView?
-    var totalGPXFiles:Double = 0
-    var arrayOFGPXFiles:[GPX]?
+
+    var gpxCollection : GPXGeneralCollection?
     
     //-//////////////////////////////////////////////////
     //
@@ -23,9 +23,10 @@ class ViewController: UIViewController, UIDocumentPickerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        
         view.backgroundColor = UIColor.black
         
-        arrayOFGPXFiles = [GPX]()
+        gpxCollection = GPXGeneralCollection(delegate: self)
         
         let button = UIButton(type: .system) // or .custom
         button.setTitle("Open GPX Data Folder", for: .normal)
@@ -78,81 +79,24 @@ class ViewController: UIViewController, UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
      
         guard let folderURL = urls.first else { return }
+
+        gpxCollection?.loadFilesFromFolder(folderURL: folderURL)
          
-         do {
-             let fileURLs = try FileManager.default.contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil)
-
-
-             for fileURL in fileURLs {
-                 if fileURL.pathExtension == "gpx" {
-                     totalGPXFiles += 1
-                 }
-             }
-
-             DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-
-                 self.processAllFiles(fileURLs: fileURLs)
-
-                 self.arrayOFGPXFiles?.sort(by: { $0.sortField! < $1.sortField! })
-                 
-                 // print the sorted arrayOFGPXFiles summary field
-
-                for gpx in self.arrayOFGPXFiles! {
-                    print ("\(gpx.summaryString!)")
-                }
-                 
-             }
-
-         } catch {
-             print("Error accessing folder contents: \(error)")
-         }
      }
     
+    //-//////////////////////////////////////////////////
+    //
+    // _updateProgressBar_
+    //
+    func updateProgressBar(progress: Float) {
     
-    
-    //-////////////////////////////////////////////////////////////////////////
-    //
-    // _processAllFiles_
-    //
-    func processAllFiles(fileURLs:[URL]) {
-
-        print ("Processing...")
-        var totalGPXFilesProcessed:Double = 0
-        
-        for fileURL in fileURLs {
-            
-            if fileURL.pathExtension == "gpx" {
-        
-                totalGPXFilesProcessed += 1
-                
-                let percentageComplete = totalGPXFilesProcessed / totalGPXFiles * 100.0
-                
-                processGPSFile(fileURL: fileURL, percentageComplete : percentageComplete)
-                   
-            }
-            
-        }
-        
-    }
-    
-    //-////////////////////////////////////////////////////////////////////////
-    //
-    // _processGPSFile_
-    //
-    private func processGPSFile(fileURL: URL, percentageComplete: Double)  {
-        
-          
-        let gpxRoute = GPX(fileName: fileURL, percentageComplete : percentageComplete)
-            
-        arrayOFGPXFiles?.append(gpxRoute)
-            
         DispatchQueue.main.async {
 
-            self.progressBar?.setProgress((Float) (percentageComplete/100), animated: true)
+            self.progressBar?.setProgress(progress, animated: true)
         }
-            
-        
+
     }
-    
+
+               
 }
 
