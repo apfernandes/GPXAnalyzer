@@ -3,7 +3,7 @@
 ### 2024-01-08
 
 Clean up.
-Organize the activities by type and year
+Organize the activities by type and year.
 Calculate the accumulated distances for each year over time.
 
 
