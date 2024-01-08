@@ -94,7 +94,7 @@ Excel chart using the output of GPXAnalyzer
 
 
 
-## Archive updates
+## Archived updates
 
 ### 2024-01-07
 
