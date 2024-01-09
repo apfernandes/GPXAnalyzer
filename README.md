@@ -1,4 +1,4 @@
-![GPXAnalyzer](gpxAnalyze.png)
+![GPXAnalyzer](gpxAnalyze.png = 250x250)
 # GPXAnalyzer
 Analyze GPX files exported from Strava (or others)
 
