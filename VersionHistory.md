@@ -1,5 +1,10 @@
 # Version History
 
+### 2024-01-09
+
+Xcode project included for providing some UI pictures 
+Webview added so that data can be copied from the window directly and not from the console
+
 ### 2024-01-08
 
 Clean up.
