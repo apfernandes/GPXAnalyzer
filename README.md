@@ -88,7 +88,7 @@ Start Screen
 ![App Start](imageAssets/screenshot_2.png)
 Loading Screen
 
-![App Start](imageAssets/screenshot_3 .png)
+![App Start](imageAssets/screenshot_3.png)
 WebView of the Data for copying
 
 You can then copy the data from xcode console or from the webview, and in Excel use paste special, text and the data will be available
